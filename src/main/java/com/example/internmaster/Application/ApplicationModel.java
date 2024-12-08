@@ -4,6 +4,8 @@ import com.example.internmaster.Offer.OfferModel;
 import com.example.internmaster.Status;
 import com.example.internmaster.Student.StudentModel;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -31,11 +33,13 @@ public class ApplicationModel {
     private byte[] cv;
     @Lob
     private byte[] applicationLetter;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "student_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private StudentModel student;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "offer_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private OfferModel offer;
 
     public StudentModel getStudent() {

@@ -20,7 +20,7 @@ public class OfferService {
         return offerRepository.findAll();
     }
 
-    public Optional<OfferModel> getOfferById(long id){
+    public OfferModel getOfferById(long id){
         return offerRepository.findById(id);
     }
 
@@ -35,9 +35,8 @@ public class OfferService {
     }
 
     public void updateOffer(long id, OfferModel newOffer){
-        Optional<OfferModel> oldOffer=offerRepository.findById(id);
-        if(oldOffer.isPresent()){
-            OfferModel offer=oldOffer.get();
+        OfferModel offer=offerRepository.findById(id);
+        if(offer!=null){
             offer.setCompany(newOffer.getCompany());
             offer.setDescription(newOffer.getDescription());
             offer.setDomaine(newOffer.getDomaine());

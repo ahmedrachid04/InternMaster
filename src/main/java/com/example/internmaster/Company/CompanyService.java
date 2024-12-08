@@ -1,5 +1,7 @@
 package com.example.internmaster.Company;
 
+import com.example.internmaster.Offer.OfferModel;
+import com.example.internmaster.Offer.OfferRepository;
 import com.example.internmaster.Student.StudentModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +14,10 @@ public class CompanyService {
 
     private final CompanyRepository companyRepository;
 
+    private final OfferRepository offerRepository;
+
     @Autowired
-    public CompanyService(CompanyRepository companyRepository){this.companyRepository=companyRepository;}
+    public CompanyService(CompanyRepository companyRepository,OfferRepository offerRepository){this.companyRepository=companyRepository;this.offerRepository=offerRepository;}
 
     public List<CompanyModel> getCompanies(){
         return companyRepository.findAll();
@@ -49,4 +53,12 @@ public class CompanyService {
         }else{throw new IllegalArgumentException("Company with ID " + id + " does not exist.");}
     }
 
+    public CompanyModel findCompanyByOffer(long offerId) {
+        OfferModel offer = offerRepository.findById(offerId);
+        if (offer != null) {
+            return offer.getCompany();
+        }
+        throw new IllegalArgumentException("Offer with ID " + offerId + " does not exist.");
+    }
 }
+

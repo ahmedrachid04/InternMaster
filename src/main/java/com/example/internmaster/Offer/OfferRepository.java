@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface OfferRepository extends JpaRepository<OfferModel, Long> {
     List<OfferModel> findByCompany_Id(long id);
+    OfferModel findById(long id);
 }
