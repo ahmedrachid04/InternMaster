@@ -24,7 +24,7 @@ public class ApplicationService {
         return applicationRepository.findAll();
     }
 
-    public Optional<ApplicationModel> getApplcationById(long id){
+    public ApplicationModel getApplcationById(long id){
         return applicationRepository.findById(id);
     }
 
@@ -33,9 +33,8 @@ public class ApplicationService {
     }
 
     public void updateApplication(long id, ApplicationModel newApp){
-        Optional<ApplicationModel> oldApp=applicationRepository.findById(id);
-        if(oldApp.isPresent()){
-            ApplicationModel app=oldApp.get();
+        ApplicationModel app=applicationRepository.findById(id);
+        if(app!=null){
             app.setApplicationDate(newApp.getApplicationDate());
             app.setApplicationLetter(newApp.getApplicationLetter());
             app.setCv(newApp.getCv());

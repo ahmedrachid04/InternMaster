@@ -9,4 +9,5 @@ import java.util.List;
 public interface ApplicationRepository extends JpaRepository<ApplicationModel, Long> {
     List<ApplicationModel> findByStudent_Id(long id);
     List<ApplicationModel> findByOffer_id(long id);
+    ApplicationModel findById(long id);
 }
