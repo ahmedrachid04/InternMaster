@@ -33,11 +33,11 @@ public class ApplicationModel {
     private byte[] cv;
     @Lob
     private byte[] applicationLetter;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private StudentModel student;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "offer_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private OfferModel offer;

@@ -43,7 +43,7 @@ public class OfferModel {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date postDate;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private CompanyModel company;
